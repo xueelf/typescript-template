@@ -2,6 +2,8 @@
   "name": "typescript-template",
   "main": "index.ts",
   "type": "module",
+  "license": "MIT",
+  "author": "Yuki <admin@yuki.sh>",
   "scripts": {
     "format": "prettier **/*.ts --write",
     "lint": "eslint **/*.ts",
