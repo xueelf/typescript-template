@@ -17,6 +17,7 @@
     "husky": "latest",
     "prettier": "latest",
     "typescript-eslint": "latest"
+    "prettier-plugin-sort": "^0.1.0",
   },
   "peerDependencies": {
     "typescript": "^5"
