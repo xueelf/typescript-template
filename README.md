@@ -1,11 +1,11 @@
-# TypeScript
+# TypeScript Template
 
 An out-of-the-box TypeScript development template, pre-configured with code linting, formatting, and Git commit validation.
 
 ## Features
 
 - ![Bun](https://img.shields.io/badge/Bun-latest-f9f1e1?style=flat-square&logo=bun&logoColor=f9f1e1&labelColor=fafafa) Fast JavaScript runtime and package manager (default)
-- ![TypeScript](https://img.shields.io/badge/TypeScript-^5-3178C6?style=flat-square&logo=typescript&logoColor=3178C6&labelColor=fafafa) Strict type checking with modern configuration
+- ![TypeScript](https://img.shields.io/badge/TypeScript-^6-3178C6?style=flat-square&logo=typescript&logoColor=3178C6&labelColor=fafafa) Strict type checking with modern configuration
 - ![ESLint](https://img.shields.io/badge/ESLint-latest-4B32C3?style=flat-square&logo=eslint&logoColor=4B32C3&labelColor=fafafa) Code linting with recommended rules
 - ![Prettier](https://img.shields.io/badge/Prettier-latest-F7B93E?style=flat-square&logo=prettier&logoColor=F7B93E&labelColor=fafafa) Opinionated code formatting
 - ![EditorConfig](https://img.shields.io/badge/EditorConfig-latest-E0EFEF?style=flat-square&logo=editorconfig&logoColor=E0EFEF&labelColor=fafafa) Consistent coding styles across different editors
@@ -14,7 +14,7 @@ An out-of-the-box TypeScript development template, pre-configured with code lint
 
 ## Requirements
 
-- TypeScript ^5
+- TypeScript ^6
 - A JavaScript runtime ([Bun](https://bun.sh/), [Node.js](https://nodejs.org/))
 
 ## Getting Started
@@ -27,17 +27,11 @@ Since I personally prefer Bun, this template uses it as the default runtime and 
 
 ```bash
 # Clone the repository
-git clone https://github.com/xueelf/TypeScript.git
-cd TypeScript
+git clone https://github.com/xueelf/typescript-template.git
+cd typescript-template
 
 # Install dependencies
 bun install
-```
-
-(Optional) If you need Bun types (e.g. for `Bun.serve`), you can run:
-
-```bash
-bun add -D @types/bun
 ```
 
 ### Using Node.js
@@ -59,34 +53,51 @@ bun add -D @types/bun
    }
    ```
 
-2. Install dependencies:
+2. Delete `bun.lock` so your package manager can generate its own lockfile:
 
    ```bash
-   npm install
+   rm bun.lock
    ```
 
-3. Update `.husky/pre-commit` (use `yarn` or `pnpm` if that's what you chose):
+3. Remove the Bun types and replace them with Node.js types:
+
+   ```bash
+   npm uninstall @types/bun
+   npm install -D @types/node
+   ```
+
+   Then update the `types` field in `tsconfig.json`:
+
+   ```json
+   {
+     "compilerOptions": {
+       "types": ["node"]
+     }
+   }
+   ```
+
+4. Update `.husky/pre-commit` (use `yarn` or `pnpm` if that's what you chose):
 
    ```bash
    npm run lint
+   npm run format
    ```
 
-4. Update `.husky/commit-msg`:
+5. Update `.husky/commit-msg`:
 
    ```bash
    npm run commitlint --edit $1
    ```
 
-5. (Optional) If you need Node.js types, add this to `tsconfig.json`:
-   ```json
-   {
-     "compilerOptions": {
-       "lib": ["esnext"],
-       "types": ["node"]
-     }
-   }
-   ```
-   Then run: `npm install -D @types/node` (or `yarn add -D` / `pnpm add -D`)
+6. ESLint, Prettier and Commitlint config files are written in TypeScript (`eslint.config.ts`, `prettier.config.ts`, `commitlint.config.ts`). Bun loads them natively, but Node.js does not. Pick one of the following:
+
+   - **Install [`jiti`](https://github.com/unjs/jiti)** to keep the `.ts` configs:
+
+     ```bash
+     npm install -D jiti
+     ```
+
+   - **Or rename them** to `.js` / `.mjs` and strip out the TypeScript syntax (e.g. type imports, `satisfies`).
 
 ### Using Deno
 
@@ -105,12 +116,16 @@ This template isn't really recommended for Deno. Since Deno comes with its own b
 ```
 .
 ├─ .editorconfig         # Editor configuration
+├─ .github/              # GitHub metadata (workflows, etc.)
+├─ .gitignore            # Git ignore rules
 ├─ .husky/               # Git hooks
 │  ├─ commit-msg           # Commit message validation
 │  └─ pre-commit           # Pre-commit linting
+├─ bun.lock              # Bun lockfile
 ├─ commitlint.config.ts  # Commitlint configuration
 ├─ eslint.config.ts      # ESLint configuration
 ├─ index.ts              # Entry point
+├─ LICENSE               # License file
 ├─ package.json          # Project manifest
 ├─ prettier.config.ts    # Prettier configuration
 └─ tsconfig.json         # TypeScript configuration
@@ -134,6 +149,7 @@ Code style settings:
 - Semicolons enabled
 - LF line endings
 - No parentheses for single arrow function parameters
+- Sorted imports via [`prettier-plugin-sort`](https://github.com/aliemir/prettier-plugin-sort)
 
 ### EditorConfig
 
@@ -147,7 +163,7 @@ Editor-level settings for consistent coding styles:
 
 ### Git Hooks
 
-- **pre-commit** — runs ESLint to catch issues before committing
+- **pre-commit** — runs ESLint and Prettier to catch issues before committing
 - **commit-msg** — validates your commit message format
 
 ### Commitlint
