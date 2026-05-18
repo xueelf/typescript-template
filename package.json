@@ -8,7 +8,9 @@
   "scripts": {
     "format": "prettier **/*.ts --write",
     "lint": "eslint **/*.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build": "bun run scripts/build/",
+    "test": "bun test scripts/test/"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.0.1",
@@ -20,6 +22,7 @@
     "husky": "^9.1.7",
     "prettier": "^3.8.3",
     "prettier-plugin-sort": "^0.1.1",
+    "annal": "^0.0.2",
     "typescript-eslint": "^8.59.3"
   },
   "peerDependencies": {
