@@ -11,6 +11,7 @@ An out-of-the-box TypeScript development template, pre-configured with code lint
 - ![EditorConfig](https://img.shields.io/badge/EditorConfig-latest-E0EFEF?style=flat-square&logo=editorconfig&logoColor=E0EFEF&labelColor=fafafa) Consistent coding styles across different editors
 - ![Husky](https://img.shields.io/badge/Husky-latest-42b983?style=flat-square&logo=git&logoColor=F05032&labelColor=fafafa) Git hooks for automated checks
 - ![Commitlint](https://img.shields.io/badge/Commitlint-latest-000000?style=flat-square&logo=commitlint&logoColor=000000&labelColor=fafafa) Conventional commit message enforcement
+- ![OIDC](https://img.shields.io/badge/Publish-OIDC-CB3837?style=flat-square&logo=npm&logoColor=CB3837&labelColor=fafafa) Secure passwordless publishing to npm with provenance
 
 ## Requirements
 
@@ -98,6 +99,14 @@ bun install
      ```
 
    - **Or rename them** to `.js` / `.mjs` and strip out the TypeScript syntax (e.g. type imports, `satisfies`).
+
+### Publishing
+
+This template includes a pre-configured GitHub Actions workflow (`.github/workflows/publish.yml`) for secure, passwordless publishing to npm.
+
+1. **Link your repository**: Ensure your package is configured on npm to trust this GitHub repository for OIDC publishing.
+2. **Push a tag**: Create and push a Git tag starting with `v` (e.g., `v1.0.0`).
+3. **Automated release**: The workflow will automatically install dependencies, lint, test, build, and publish your package with `--provenance` for increased supply-chain security.
 
 ### Using Deno
 
