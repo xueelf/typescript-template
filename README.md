@@ -1,5 +1,7 @@
 # TypeScript Template
 
+> Read this in other languages: English | [中文](./README.zh.md)
+
 An out-of-the-box TypeScript development template, pre-configured with code linting, formatting, and Git commit validation.
 
 ## Features
@@ -90,8 +92,7 @@ bun install
    npm run commitlint --edit $1
    ```
 
-6. ESLint, Prettier and Commitlint config files are written in TypeScript (`eslint.config.ts`, `prettier.config.ts`, `commitlint.config.ts`). Bun loads them natively, but Node.js does not. Pick one of the following:
-
+6. ESLint, Prettier and Commitlint config files are written in TypeScript (`eslint.config.ts`, `prettier.config.ts`, `commitlint.config.ts`). Bun and Node.js 22.6+ (via `--experimental-strip-types`, enabled by default in 23+) can load them natively. If you're using an older Node.js version, pick one of the following:
    - **Install [`jiti`](https://github.com/unjs/jiti)** to keep the `.ts` configs:
 
      ```bash
@@ -99,6 +100,8 @@ bun install
      ```
 
    - **Or rename them** to `.js` / `.mjs` and strip out the TypeScript syntax (e.g. type imports, `satisfies`).
+
+7. Update `.github/workflows/publish.yml` to use your package manager's commands (e.g. replace `bun ci`, `bun run lint`, `bun run build` with their npm/pnpm/yarn equivalents).
 
 ### Publishing
 
@@ -114,31 +117,38 @@ This template isn't really recommended for Deno. Since Deno comes with its own b
 
 ### Available Scripts
 
-| Script    | Description                               |
-| --------- | ----------------------------------------- |
-| `lint`    | Run ESLint on all TypeScript files        |
-| `format`  | Format all TypeScript files with Prettier |
-| `prepare` | Set up Husky Git hooks                    |
+| Script      | Description                               |
+| ----------- | ----------------------------------------- |
+| `build`     | Build the project with Bun                |
+| `test`      | Run tests via Bun's test runner           |
+| `lint`      | Run ESLint on all TypeScript files        |
+| `format`    | Format all TypeScript files with Prettier |
+| `typecheck` | Run TypeScript type checking              |
+| `prepare`   | Set up Husky Git hooks                    |
 
 ## Project Structure
 
 ```
 .
-├─ .editorconfig         # Editor configuration
-├─ .github/              # GitHub metadata (workflows, etc.)
-├─ .gitignore            # Git ignore rules
-├─ .husky/               # Git hooks
-│  ├─ commit-msg           # Commit message validation
-│  └─ pre-commit           # Pre-commit linting
-├─ bun.lock              # Bun lockfile
-├─ commitlint.config.ts  # Commitlint configuration
-├─ eslint.config.ts      # ESLint configuration
-├─ index.ts              # Entry point
-├─ LICENSE               # License file
-├─ package.json          # Project manifest
-├─ prettier.config.ts    # Prettier configuration
-└─ tsconfig.json         # TypeScript configuration
+├── .github/
+├── .husky/
+├── scripts/
+├── src/
+├── .editorconfig
+├── .gitignore
+├── bun.lock
+├── commitlint.config.ts
+├── eslint.config.ts
+├── LICENSE
+├── package.json
+├── prettier.config.ts
+├── tsconfig.build.json
+└── tsconfig.json
 ```
+
+- `.github/` — GitHub Actions CI/CD and Dependabot dependency updates
+- `.husky/` — Git hooks for pre-commit checks and commit message validation
+- `scripts/` — Build pipeline and test automation
 
 ## Configuration
 
