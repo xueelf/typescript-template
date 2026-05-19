@@ -3,14 +3,14 @@ import { rm } from 'node:fs/promises';
 
 import { journal } from 'annal';
 
-import { OUT_DIR } from '.';
+import { compilerOptions } from '~/tsconfig.json';
 
 export function rmPlugin(): BunPlugin {
   return {
     name: 'rm',
     async setup(): Promise<void> {
-      await rm(OUT_DIR, { recursive: true, force: true });
-      journal.info(`${OUT_DIR} directory removed`);
+      await rm(compilerOptions.outDir, { recursive: true, force: true });
+      journal.info(`${compilerOptions.outDir} directory removed`);
     },
   };
 }
@@ -19,7 +19,7 @@ export function dtsPlugin(): BunPlugin {
   return {
     name: 'dts',
     async setup(): Promise<void> {
-      await $`tsc`;
+      await $`tsc -p tsconfig.build.json`;
       journal.info('Type declaration files generated');
     },
   };

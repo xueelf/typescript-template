@@ -4,13 +4,14 @@
   "license": "MIT",
   "author": "Yuki <admin@yuki.sh>",
   "type": "module",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "format": "prettier **/*.ts --write",
     "lint": "eslint **/*.ts",
     "prepare": "husky",
     "build": "bun run scripts/build/",
-    "test": "bun test scripts/test/"
+    "test": "bun test scripts/test/",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.0.1",

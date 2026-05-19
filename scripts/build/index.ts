@@ -1,13 +1,13 @@
 import { type BuildConfig, build } from 'bun';
 
-import { rmPlugin } from './plugin';
+import { dtsPlugin, rmPlugin } from './plugin';
 
-export const OUT_DIR = 'dist';
+import { compilerOptions } from '~/tsconfig.json';
 
 const config: BuildConfig = {
   entrypoints: ['src/index.ts'],
-  outdir: OUT_DIR,
-  plugins: [rmPlugin()],
+  outdir: compilerOptions.outDir,
+  plugins: [rmPlugin(), dtsPlugin()],
 };
 
 await build(config);
