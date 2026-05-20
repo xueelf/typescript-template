@@ -111,6 +111,8 @@ bun install
 2. **推送标签**：创建并推送以 `v` 开头的 Git 标签（如 `v1.0.0`）。
 3. **自动发布**：工作流将自动安装依赖、检查代码、运行测试、构建，并以 `--provenance` 发布你的包，增强供应链安全。
 
+> **注意**：Bun 尚不支持基于 OIDC 的发布。CI 工作流使用 `npm publish` 执行此步骤。由于 `devEngines` 强制要求 `bun` 作为运行时，发布前请将 `package.json` 中 `devEngines.runtime.onFail` 改为 `"warn"` 以避免错误。
+
 ### 使用 Deno
 
 不推荐将此模板用于 Deno。Deno 自带格式化工具和检查器，你需要移除所有 ESLint 和 Prettier 配置、删除 `package.json` 和 `tsconfig.json`，然后从头创建 `deno.json`。建议使用 Deno 专用模板。

@@ -111,6 +111,8 @@ This template includes a pre-configured GitHub Actions workflow (`.github/workfl
 2. **Push a tag**: Create and push a Git tag starting with `v` (e.g., `v1.0.0`).
 3. **Automated release**: The workflow will automatically install dependencies, lint, test, build, and publish your package with `--provenance` for increased supply-chain security.
 
+> **Note**: Bun does not yet support OIDC-based publishing. The CI workflow uses `npm publish` for this step. Since `devEngines` enforces `bun` as the runtime, change `devEngines.runtime.onFail` to `"warn"` in `package.json` before publishing to avoid errors.
+
 ### Using Deno
 
 This template isn't really recommended for Deno. Since Deno comes with its own built-in formatter and linter, you'd have to rip out all the ESLint and Prettier setups, delete `package.json` and `tsconfig.json`, and create a `deno.json` from scratch. It's a lot of work for little gain, so you're better off starting with a Deno-specific template.
