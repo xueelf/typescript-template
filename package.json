@@ -24,7 +24,7 @@
     "prettier": "^3.8.3",
     "prettier-plugin-sort": "^0.1.1",
     "annal": "^0.0.2",
-    "typescript-eslint": "^8.59.3"
+    "typescript-eslint": "^8.59.4"
   },
   "peerDependencies": {
     "typescript": "^6.0.3"
