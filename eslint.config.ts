@@ -7,6 +7,11 @@ export default defineConfig(
   tseslint.configs.recommended,
   {
     rules: {
+      curly: 'error',
+      'no-var': 'error',
+      'prefer-const': 'error',
+      'prefer-rest-params': 'error',
+      'no-new-wrappers': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
