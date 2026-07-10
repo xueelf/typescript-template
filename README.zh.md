@@ -171,7 +171,7 @@ bun install
 - 启用分号
 - LF 换行符
 - 单参数箭头函数不添加括号
-- 通过 [`prettier-plugin-sort`](https://github.com/aliemir/prettier-plugin-sort) 自动排序导入
+- 通过 [`prettier-plugin-sort`](https://github.com/xueelf/prettier-plugin-sort) 自动排序导入
 
 ### EditorConfig
 

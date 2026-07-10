@@ -170,7 +170,7 @@ Code style settings:
 - Semicolons enabled
 - LF line endings
 - No parentheses for single arrow function parameters
-- Sorted imports via [`prettier-plugin-sort`](https://github.com/aliemir/prettier-plugin-sort)
+- Sorted imports via [`prettier-plugin-sort`](https://github.com/xueelf/prettier-plugin-sort)
 
 ### EditorConfig
 
