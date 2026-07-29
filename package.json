@@ -4,13 +4,22 @@
   "license": "MIT",
   "author": "Yuki <admin@yuki.sh>",
   "type": "module",
-  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "format": "prettier **/*.ts --write",
-    "lint": "eslint **/*.ts",
+    "build": "bun run scripts/build.ts",
+    "format": "prettier \"**/*.{json,md,ts,yaml,yml}\" --write --experimental-cli",
+    "format:check": "prettier \"**/*.{json,md,ts,yaml,yml}\" --check --experimental-cli",
+    "lint": "eslint --cache",
+    "lint:fix": "eslint --fix --cache",
     "prepare": "husky",
-    "build": "bun run scripts/build/",
-    "test": "bun test scripts/test/",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
