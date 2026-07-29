@@ -1,5 +1,5 @@
 {
-  "name": "typescript-template",
+  "name": "bun-template",
   "private": true,
   "license": "MIT",
   "author": "Yuki <admin@yuki.sh>",
@@ -19,12 +19,12 @@
     "@commitlint/types": "^21.2.0",
     "@eslint/js": "^10.0.1",
     "@types/bun": "^1.3.14",
-    "eslint": "^10.6.0",
-    "husky": "^9.1.7",
-    "prettier": "^3.9.5",
-    "prettier-plugin-sort": "^0.2.0",
     "annal": "^0.0.2",
-    "typescript-eslint": "^8.59.4"
+    "eslint": "^10.8.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.9.6",
+    "prettier-plugin-sort": "^1.0.0",
+    "typescript-eslint": "^8.65.0"
   },
   "peerDependencies": {
     "typescript": "^6.0.3"
