@@ -41,11 +41,11 @@
   "devEngines": {
     "runtime": {
       "name": "bun",
-      "onFail": "error"
+      "onFail": "warn"
     },
     "packageManager": {
       "name": "bun",
-      "onFail": "error"
+      "onFail": "warn"
     }
   }
 }
