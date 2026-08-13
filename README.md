@@ -34,7 +34,7 @@ Pull requests and pushes to `master` run `.github/workflows/ci.yml`. Tags starti
 
 > `devEngines` temporarily uses `onFail: "warn"` because OIDC publishing still requires npm. Once [`bun publish` supports npm OIDC](https://github.com/oven-sh/bun/issues/22423), switch it back to `"error"` and publish with Bun.
 
-1. **Prepare the package**: Update the package name, add a version and repository, then remove `"private": true`.
+1. **Prepare the package**: Update the package name, version, and repository, then remove `"private": true`.
 2. **Configure trusted publishing**: Configure the package on npm to trust this GitHub repository.
 3. **Push a tag**: Create and push a Git tag starting with `v` (e.g., `v1.0.0`).
 
@@ -58,7 +58,8 @@ Pull requests and pushes to `master` run `.github/workflows/ci.yml`. Tags starti
 ├── .github/
 ├── .husky/
 ├── scripts/
-│   └── build.ts
+│   ├── build.ts
+│   └── check-version.ts
 ├── src/
 ├── tests/
 │   └── example.test.ts
