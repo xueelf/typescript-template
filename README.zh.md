@@ -34,7 +34,7 @@ bun install
 
 > `devEngines` 暂时使用 `onFail: "warn"`，因为 OIDC 发布目前仍需 npm。待 [`bun publish` 支持 npm OIDC](https://github.com/oven-sh/bun/issues/22423) 后，应恢复为 `"error"` 并改用 Bun 发布。
 
-1. **准备包信息**：更新包名，添加版本号和仓库地址，然后删除 `"private": true`。
+1. **准备包信息**：更新包名、版本号和仓库地址，然后删除 `"private": true`。
 2. **配置可信发布**：在 npm 上配置该包信任此 GitHub 仓库。
 3. **推送标签**：创建并推送以 `v` 开头的 Git 标签（如 `v1.0.0`）。
 
@@ -58,7 +58,8 @@ bun install
 ├── .github/
 ├── .husky/
 ├── scripts/
-│   └── build.ts
+│   ├── build.ts
+│   └── check-version.ts
 ├── src/
 ├── tests/
 │   └── example.test.ts
