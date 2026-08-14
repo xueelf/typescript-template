@@ -118,6 +118,7 @@ CI 配置位于 `.github/workflows/ci.yml`。工作流依次执行格式检查�
 ### ESLint
 
 - 使用 ESLint 和 typescript-eslint 推荐规则
+- 强制 `if`、`for` 等控制语句使用花括号
 - 忽略以 `_` 开头的未使用变量和参数
 
 ### Prettier
